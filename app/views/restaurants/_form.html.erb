@@ -1,0 +1,58 @@
+<%= form_for(@restaurant) do |f| %>
+  <% if restaurant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+
+      <ul>
+        <% restaurant.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "Name" %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, "Address" %><br />
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city, "City" %><br />
+    <%= f.text_field :city  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state, "State" %><br />
+    <%= f.text_field :state  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zip, "Zip" %><br />
+    <%= f.text_field :zip %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, "Description" %><br />
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field" >
+  	 <%= f.label "Categories:" %><br />
+        <%= hidden_field_tag "restaurant[category_ids][]", nil %>
+        <% if @categories %>
+      	    <% @categories.each do |category| %>
+        	    <%= check_box_tag "restaurant[category_ids][]", category.id, @restaurant.category_ids.include?(category.id), id: dom_id(category) %>
+        	    <%= label_tag dom_id(category), category.name %><br>
+      	    <% end %>
+         <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add Restaurant" %>
+  </div>
+<% end %>

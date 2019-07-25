@@ -1,0 +1,6 @@
+<h1><%= @category.name %> style food</h1>
+<ul>
+ <% @restaurants.each do |restaurant| %>
+   <li><%= link_to restaurant.name, restaurant %></li>
+ <% end %>
+</ul>
