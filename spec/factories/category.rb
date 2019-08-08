@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :category do
     CATEGORIES = ['European', 'Italian', 'Fast food', 'Russian', 'Kazakh', 'Chinese', 'Mediterranean', 'Uzbek', 'Japanese'].freeze
-    sequence(:name, 10) { |n| "CATEGORIES[#{n - 1}]" }
+    sequence(:name) { CATEGORIES[rand(CATEGORIES.length)] }
   end
 end

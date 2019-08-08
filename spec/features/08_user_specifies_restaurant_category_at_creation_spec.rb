@@ -2,15 +2,16 @@
 
 require 'rails_helper'
 
-# As a user
-# I want to specify what categories a restaurant belongs to when creating it
-# So people know what kind of cuisine the new restaurant serves
-
-# On the page to create a new restaurant, I should see checkboxes for all the categories.
-# Upon successful form submission, I should see the names of the categories which were selected on the form to be present on the restaurant's details page.
-
 feature 'visitors can add restaurants category when creating new restaurant' do
-  scenario 'visitor adds new restaurant with one category successfully' do
+  scenario 'visitor adds new restaurant with one category successfully', %(
+    As a user
+    I want to specify what categories a restaurant belongs to when creating it
+    So people know what kind of cuisine the new restaurant serves
+    On the page to create a new restaurant, I should see checkboxes for all the categories
+    Upon successful form submission
+    I should see the name of the category
+    that was selected on the form to be present on the restaurant's details page.
+    ) do
     CategorySeeder.seed!
     visit new_restaurant_path
 
@@ -34,7 +35,10 @@ feature 'visitors can add restaurants category when creating new restaurant' do
     expect(page).to have_content 'Japanese'
   end
 
-  scenario 'visitor adds new restaurant with two categories successfully' do
+  scenario 'visitor adds new restaurant with two categories successfully', %(
+    Upon successful form submission, I should see the name(s) of the category(ies)
+    which were selected on the form to be present on the restaurant's details page.
+    ) do
     CategorySeeder.seed!
     visit new_restaurant_path
 

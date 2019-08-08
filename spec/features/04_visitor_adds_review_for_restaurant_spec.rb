@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-# [] Visiting the `/restaurants/1/reviews/new` should display a form for creating a new review for a restaurant with ID = 1.
-# [] A review must contain the following:
-#   [] A review body of text
-#   [] A review rating of text
-
 feature 'visitors can add reviews for restaurants' do
-  scenario 'adds a review for a restaurant successfully' do
-    dumpling_king = Restaurant.create!(name: 'Dumpling King', address: '33 Harrison Ave', city: 'Boston', state: 'MA', zip: '12111', description: 'Straightforward dumplings for a great price.')
+  scenario 'adds a review for a restaurant successfully', %(
+    Visiting the \/restaurants\/1\/reviews\/new should display a form for creating a new review for a restaurant with ID = 1.
+    A review must contain the following
+    A review body of text
+    A review rating of text
+    ) do
+    dumpling_king = FactoryBot.create(:restaurant, name: 'Dumpling King')
 
     visit restaurant_path(dumpling_king)
 
